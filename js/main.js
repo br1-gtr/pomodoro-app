@@ -28,7 +28,7 @@ const createTask = task => {
     tasks.unshift(newTask);
 }
 
-const renderTask = () => {
+const renderTask = () => { //renderiza lista de tareas
     const htmlTaskList = tasks.map(task => {
         return `
         <div class="task">
@@ -52,18 +52,18 @@ const renderTask = () => {
     })
 };
 
-const startTask = id => { //asigna tiempo  de tarea, ubica tarea segund index/id
+const startTask = id => { //asigna tiempo de tarea, ubica tarea segund index/id
     time = 5; //asigna tiempo para tarea
     current = id;
     const taskIx = tasks.findIndex( task => task.id === id );
     taskName.textContent = tasks[taskIx].title;
-    timer = setInterval(()=>{
+    timer = setInterval(()=>{ //inicia timer de tarea
             timeControl(id);
     },1000);
     tasks[taskIx].status = true;
 };
 
-const timeControl = id => {
+const timeControl = id => { //renderiza tiempo y verifica tiempo restante
     time--;
     renderTime();
     if(time ===0){ //detiene timer
@@ -83,15 +83,15 @@ const renderTime = () => {
     valueTime.textContent = `${(minutes < 10)? '0' : ''}${minutes}:${(seconds < 10)? '0' : ''}${seconds}`; //formato a timer
 };
 
-const startBreak = () => {
+const startBreak = () => { //inicia break
     time = 3;
     taskName.textContent = 'Break';
-    timerBreak = setInterval(()=>{
+    timerBreak = setInterval(()=>{ //inicia timer de break
         breakControl();
     },1000);
 };
 
-const breakControl = () => {
+const breakControl = () => { //renderiza tiempo de break y verifica tiempo restante
     time--;
     renderTime();
     if(time ===0){ //detiene timer
