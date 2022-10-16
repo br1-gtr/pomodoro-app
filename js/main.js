@@ -83,7 +83,6 @@ const renderTime = () => {
     valueTime.textContent = `${(minutes < 10)? '0' : ''}${minutes}:${(seconds < 10)? '0' : ''}${seconds}`; //formato a timer
 };
 
-
 const startBreak = () => {
     time = 3;
     taskName.textContent = 'Break';
@@ -102,6 +101,6 @@ const breakControl = () => {
         taskName.textContent = '';
         renderTask();
     }
-    current = null;
+    //current = null;
 };
 
