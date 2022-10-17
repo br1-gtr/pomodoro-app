@@ -31,9 +31,9 @@ const createTask = task => {
 const renderTask = () => { //renderiza lista de tareas
     const htmlTaskList = tasks.map(task => {
         return `
-        <div class="task">
-            <div class="title">${task.title}</div>
-            <div class="status">${(task.status)?`<span class='done'>Done</span>`:`<button class='btnStart' data-id='${task.id}'>Start</button>`}</div>
+        <div class="task flex-row">
+            <div class="task__title">${task.title}</div>
+            <div class="task__status">${(task.status)?`<span class='done'>Done</span>`:`<button class='btnStart pma__add' data-id='${task.id}'>Start</button>`}</div>
         </div>
 
         `;
@@ -46,7 +46,7 @@ const renderTask = () => { //renderiza lista de tareas
             if(!timer){//valida otra tarea en curso
                 const id = btn.getAttribute('data-id'); //captura id de btn
                 startTask(parseInt(id));
-                btn.textContent = 'In progress...'
+                btn.textContent = 'En proceso...'
             }
         })
     })

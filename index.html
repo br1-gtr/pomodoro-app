@@ -6,24 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pomodoro App</title>
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="container">
-        <h1>Pomodoro-App</h1>
+    <div class="pma flex-col">
+        <h1 class="pma__title">Pomodoro-App</h1>
         <div id="time">
-            <div id="valueTime">00:00</div>
-            <div id="taskName">Tarea en curso</div>
+            <div class="pma__time" id="valueTime">00:00</div>
+            <div class="pma__current"id="taskName">Tarea en curso</div>
         </div>
-        <div class="tasks-container">
-            <div class="form">
-                <form action="" id="form">
-                    <input type="text" id="inputTask">
-                    <input type="submit" id="addTask" value="Agregar Tarea...">
-                </form>
-            </div>
-        </div> 
-        <div id="taskList">
+        <div class="tasks-container form">
+            <form action="" id="form">
+                <input class="pma__input" type="text" id="inputTask">
+                <input class="pma__add" type="submit" id="addTask" value="Agregar Tarea">
+            </form>
+        </div>
+        <div class="pma__list" id="taskList">
             
         </div>
     </div>
