@@ -50,14 +50,14 @@ body{
     }
     &__add{
         font: inherit;
-        padding: 10px;
+        padding: 3px;
         height: 30px;
         border: none;
         border-radius: 17px;
         background: linear-gradient(145deg, #ffffff, #e6e6e6);
         box-shadow:  6px 6px 10px #d6d6d6,
                     -6px -6px 10px #ffffff;
-        line-height: 50%;
+        line-height: 60%;
     }
 }
 .tasks-container,form{
@@ -78,5 +78,15 @@ body{
     }
     &__status{
         width: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
+}
+
+//Btns Status
+.icon{
+    height: 18px;
+    width: 18px;
+    margin: 4px;
 }

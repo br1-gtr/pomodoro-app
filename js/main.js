@@ -33,7 +33,7 @@ const renderTask = () => { //renderiza lista de tareas
         return `
         <div class="task flex-row">
             <div class="task__title">${task.title}</div>
-            <div class="task__status">${(task.status)?`<span class='done'>Done</span>`:`<button class='btnStart pma__add' data-id='${task.id}'>Start</button>`}</div>
+            <div class="task__status">${(task.status)?`<span class='done'><img src="./assets/icon/check.svg" class="icon"></span>`:`<button class='btnStart pma__add' data-id='${task.id}'><img src="./assets/icon/play.svg" class="icon"></img></button>`}</div>
         </div>
 
         `;
@@ -43,7 +43,7 @@ const renderTask = () => { //renderiza lista de tareas
     const startBtns = document.querySelectorAll('.btnStart');
     startBtns.forEach(btn => { //agrega listener a cada btn
         btn.addEventListener('click', e => {
-            if(!timer){//valida otra tarea en curso
+            if(!timer && !timerBreak){//valida otra tarea/break en curso
                 const id = btn.getAttribute('data-id'); //captura id de btn
                 startTask(parseInt(id));
                 btn.textContent = 'En proceso...'
@@ -53,30 +53,34 @@ const renderTask = () => { //renderiza lista de tareas
 };
 
 const startTask = id => { //asigna tiempo de tarea, ubica tarea segund index/id
-    time = 5; //asigna tiempo para tarea
-    current = id;
-    const taskIx = tasks.findIndex( task => task.id === id );
-    taskName.textContent = tasks[taskIx].title;
-    timer = setInterval(()=>{ //inicia timer de tarea
-            timeControl(id);
-    },1000);
-    tasks[taskIx].status = true;
+    console.log(current)
+    if(current === null){
+        time = 5; //asigna tiempo para tarea
+        current = id;
+        const taskIx = tasks.findIndex( task => task.id === id );
+        taskName.textContent = tasks[taskIx].title;
+        timer = setInterval(()=>{ //inicia timer de tarea
+                timeControl(id);
+        },1000);
+        tasks[taskIx].status = true;
+    }
 };
 
-const timeControl = id => { //renderiza tiempo y verifica tiempo restante
+const timeControl = () => { //renderiza tiempo y verifica tiempo restante
     time--;
     renderTime();
-    if(time ===0){ //detiene timer
+    if(time === 0){ //detiene timer
         clearInterval(timer);
         taskName.textContent = '';
         timer = null; //reinicializa timer para poder iniciar nueva tarea
         renderTask();
         startBreak();
+        current = null;
     }
-    current = null;
 };
 
 const renderTime = () => {
+    console.log(current);
     const valueTime = document.querySelector('#valueTime');
     let minutes = parseInt(time / 60);
     let seconds = parseInt(time % 60);
